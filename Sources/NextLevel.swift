@@ -625,6 +625,7 @@ extension NextLevel {
                 self._captureSession = nil
                 self._recordingSession = nil
                 self._currentDevice = nil
+                self._recording = false
 
                 if session.isRunning {
                     session.stopRunning()
