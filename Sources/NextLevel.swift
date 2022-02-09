@@ -617,18 +617,18 @@ extension NextLevel {
     public func stop() {
         if let session = self._captureSession {
             self.executeClosureAsyncOnSessionQueueIfNecessary {
-                if session.isRunning == true {
-                    session.stopRunning()
-                }
-
                 self.beginConfiguration()
                 self.removeInputs(session: session)
                 self.removeOutputs(session: session)
                 self.commitConfiguration()
-
-                self._recordingSession = nil
+                
                 self._captureSession = nil
+                self._recordingSession = nil
                 self._currentDevice = nil
+
+                if session.isRunning {
+                    session.stopRunning()
+                }
             }
         }
 
