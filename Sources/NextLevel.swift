@@ -616,7 +616,7 @@ extension NextLevel {
     /// Stops the current recording session.
     public func stop() {
         if let session = self._captureSession {
-            self.executeClosureAsyncOnSessionQueueIfNecessary {
+//            self.executeClosureAsyncOnSessionQueueIfNecessary {
                 self.beginConfiguration()
                 self.removeInputs(session: session)
                 self.removeOutputs(session: session)
@@ -630,7 +630,7 @@ extension NextLevel {
                 if session.isRunning {
                     session.stopRunning()
                 }
-            }
+//            }
         }
 
         #if USE_ARKIT
