@@ -63,6 +63,7 @@ public protocol NextLevelDelegate: AnyObject {
     func nextLevelSessionWillStart(_ nextLevel: NextLevel)
     func nextLevelSessionDidStart(_ nextLevel: NextLevel)
     func nextLevelSessionDidStop(_ nextLevel: NextLevel)
+    func nextLevelSessionRuntimeError(_ nextLevel: NextLevel, error: AVError)
 
     // session interruption
     func nextLevelSessionWasInterrupted(_ nextLevel: NextLevel)

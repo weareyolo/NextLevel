@@ -616,7 +616,7 @@ extension NextLevel {
     /// Stops the current recording session.
     public func stop() {
         if let session = self._captureSession {
-//            self.executeClosureAsyncOnSessionQueueIfNecessary {
+            self.executeClosureAsyncOnSessionQueueIfNecessary {
                 self.beginConfiguration()
                 self.removeInputs(session: session)
                 self.removeOutputs(session: session)
@@ -630,7 +630,7 @@ extension NextLevel {
                 if session.isRunning {
                     session.stopRunning()
                 }
-//            }
+            }
         }
 
         #if USE_ARKIT
@@ -3020,6 +3020,11 @@ extension NextLevel {
                     // TODO reset capture
                     break
                 }
+            }
+        }
+        DispatchQueue.main.async {
+            if let error = notification.userInfo?[AVCaptureSessionErrorKey] as? AVError {
+                self.delegate?.nextLevelSessionRuntimeError(self, error: error)
             }
         }
     }
